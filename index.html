@@ -17,31 +17,37 @@
             </h2>
             <input type="text" name="gamelink" placeholder="Link to your game">
             <div class="" style="position: relative; display: block; width: 100%;">
+                <fieldset class="binary-selector" name="color">
+                    <legend>Pick your side:</legend>
+                    <figure>
+                        <input type="radio" name="game-color" value="white">
+                        <label for="white">
+                            white
+                        </label>
+                    </figure>
+                    <figure>
+                        <input type="radio" name="game-color" value="black" checked>
+                        <label for="black">
+                            black
+                        </label>
+                    </figure>
+                </fieldset>
 
-            <div class="binary-selector" name="color">
-                <h3>Pick your side</h3>
-                <label for="white">
-                    <input type="radio" name="game-color" value="white">
-                    white
-                </label>
-                <label for="black">
-                    <input type="radio" name="game-color" value="black" checked>
-                    black
-                </label>
-
-            </div>
-            
-            <div class="binary-selector" name="mode">
-                <h3>What is flex or fail?</h3>
-                <label for="flex">
-                    <input type="radio" name="game-type" value="flex" checked>
-                    flex
-                </label>
-                <label for="fail">
-                    <input type="radio" name="game-type" value="fail">
-                    fail
-                </label>
-            </div>
+                <fieldset class="binary-selector" name="mode">
+                    <legend>What is flex or fail?</legend>
+                    <figure>
+                    <input type="radio" name="game-type" value="flex" id="flex" checked>
+                    <label for="flex">
+                        flex
+                    </label>
+                    </figure>
+                    <figure>
+                    <input type="radio" name="game-type" value="fail" id="fail">
+                    <label for="fail">
+                        fail
+                    </label>
+                    </figure>
+                </fieldset>
             </div>
 
             <textarea name="personalmessage" id="personalmessage" cols="80" rows="30"
@@ -49,10 +55,12 @@
         </div>
         <div class="output-data">
             <h2>Output</h2>
-            <pre class="output">**[{gametype}]**<br><br>_I played as {color}_<br><br>> {personalmessage}<br><br>_Link: {link}_</pre>
+            <pre
+                class="output">**[{gametype}]**<br><br>_I played as {color}_<br><br>> {personalmessage}<br><br>_Link: {link}_</pre>
         </div>
     </main>
 </body>
 
 <script src="main.js"></script>
+
 </html>

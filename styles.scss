@@ -71,10 +71,16 @@ body {
 
 .binary-selector {
     display: flex;
-    width: 50%;
+    width: 100%;
     flex-wrap: nowrap;
     flex-direction: column;
     position: relative;
+    justify-content: space-between;
+    label {
+        width: 50%;
+        display: inline-block;
+        flex-grow: 1;
+    }
 
     /*       display: inline-block;
 /       position: relative;
