@@ -1,0 +1,100 @@
+body {
+    display: block;
+    width: 60vw;
+    max-width: 1280px;
+    padding: 0 20vw;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #272727;
+    color: #fff;
+    h1 {
+        display: block;
+        clear: both;
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+        margin: 0;
+        padding: 0;
+    }
+    main {
+        display: flex;
+        div {
+            display: inline-block;
+            max-width: 49.5%;
+            margin: 0;
+            padding: 0;
+            h2 {
+                display: block;
+                width: 100%;
+            }
+        }
+        .game-data {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            input,
+            textarea {
+                &:not([type="radio"]) {
+                    display: block;
+                    border-radius: 5px;
+                    outline: none;
+                    &:focus {
+                        box-shadow: 0px 0px 15px #76fff4;
+                    }
+                    margin: 15px;
+                    padding: 5px;
+                }
+            }
+            label {
+                display: none;
+                input {
+                    display: inline-block;
+                    padding: 0;
+                    margin: 0;
+                }
+                clear: both;
+            }
+        }
+        .output-data {
+            position: relative;
+            pre {
+                display: block;
+                white-space: pre-wrap; /* Since CSS 2.1 */
+                white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+                white-space: -pre-wrap; /* Opera 4-6 */
+                white-space: -o-pre-wrap; /* Opera 7 */
+                word-wrap: break-word;
+                word-break: keep-all;
+                height: 100%;
+            }
+        }
+    }
+}
+
+.binary-selector {
+    display: inline-block;
+    position: relative;
+    height: 30px;
+    width: 75px;
+    background-color: #fff;
+    overflow: hidden;
+    text-align: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+    &:after {
+        content: "";
+        width: 40px;
+        height: 40px;
+        background-color: #272727;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+.flex {
+    display: flex;
+}

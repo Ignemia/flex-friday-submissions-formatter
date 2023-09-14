@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="styles.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flex Friday Submission Formatter</title>
+</head>
+
+<body>
+    <h1>Format your Flex Friday Message</h1>
+    <main>
+        <div class="game-data">
+            <h2>
+                Game information
+            </h2>
+            <input type="text" name="gamelink" placeholder="Link to your game">
+            <div class="flex">
+
+            <div class="binary-selector" name="color">
+
+                <label for="white">
+                    <input type="radio" name="game-color" value="white">
+                    white
+                </label>
+                <label for="black">
+                    <input type="radio" name="game-color" value="black" checked>
+                    black
+                </label>
+
+            </div>
+            
+            <div class="binary-selector" name="flexfail">
+                <label for="flex">
+                    <input type="radio" name="game-type" value="flex" checked>
+                    flex
+                </label>
+                <label for="fail">
+                    <input type="radio" name="game-type" value="fail">
+                    fail
+                </label>
+            </div>
+            </div>
+
+            <textarea name="personalmessage" id="personalmessage" cols="80" rows="30"
+                placeholder="Personal Message"></textarea>
+        </div>
+        <div class="output-data">
+            <h2>Output</h2>
+            <pre class="output">**[{gametype}]**<br><br>_I played as {color}_<br><br>> {PersonalMessage}<br><br>_Link: {link}_</pre>
+        </div>
+    </main>
+</body>
+
+<script src="main.js"></script>
+</html>
