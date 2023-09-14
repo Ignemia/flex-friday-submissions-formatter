@@ -1,7 +1,7 @@
 const ELEMENTS = {
     LINK: document.querySelector('input[name="gamelink"]'),
-    MODE: document.querySelector('input[name="game-type"]'),
-    COLOR: document.querySelector('input[name="game-color"]'),
+    MODE: document.querySelectorAll('input[name="game-type"]'),
+    COLOR: document.querySelectorAll('input[name="game-color"]'),
     MESSAGE: document.querySelector('textarea[name="personalmessage"]'),
     OUTPUT: document.querySelector('.output')
 };
@@ -20,8 +20,8 @@ function updateOutput(key, value, prev = null) {
 
 function update() {
     const link = ELEMENTS.LINK.value;
-    const mode = ELEMENTS.MODE.value;
-    const color = ELEMENTS.COLOR.value;
+    const mode = (()=>{let otp; for (const el of ELEMENTS.MODE) if (el.checked) otp=el; return otp})().value;
+    const color = (()=>{let otp; for (const el of ELEMENTS.COLOR) if (el.checked) otp=el; return otp})().value;
     const message = ELEMENTS.MESSAGE.value;
 
     let upLink = updateOutput('gamelink', link);
@@ -33,8 +33,8 @@ function update() {
 
 function main() {
     ELEMENTS.LINK.addEventListener('input', update);
-    ELEMENTS.MODE.addEventListener('input', update);
-    ELEMENTS.COLOR.addEventListener('input', update);
+    for (const el of ELEMENTS.MODE) el.addEventListener('change', update);
+    for (const el of ELEMENTS.COLOR) el.addEventListener('change', update);
     ELEMENTS.MESSAGE.addEventListener('input', update);    
 }
 main();
