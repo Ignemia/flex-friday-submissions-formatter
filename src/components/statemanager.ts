@@ -52,13 +52,13 @@ export class StateManager {
         });
     }
 
-    private setGameLink(newGameLink:string) {
+    public setGameLink(newGameLink:string) {
         if (newGameLink.includes(".com/game/live/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
         if (newGameLink.includes("analysis")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1, newGameLink.indexOf("?"));
         throw new ReferenceError("Invalid link");
     }
 
-    private setColor(newColor: string) {
+    public setColor(newColor: string) {
         switch (newColor) {
             case "white":
                 this.playerColor = COLORS.WHITE;
@@ -71,15 +71,15 @@ export class StateManager {
         }
     }
 
-    private setTwitchName(newName: string) {
+    public setTwitchName(newName: string) {
         this.playerName.twitch = newName;
     }
     
-    private setIGN(newName: string) {
+    public setIGN(newName: string) {
         this.playerName.ign = newName;
     }
 
-    private setSubmissionType(newType: string) {
+    public setSubmissionType(newType: string) {
         switch (newType) {
             case "flex":
                 this.submimssionType = SUBMISSION_TYPE.FLEX;
@@ -92,7 +92,7 @@ export class StateManager {
         }
     }
 
-    private setPlayerMessage(newMessage: string) {
+    public setPlayerMessage(newMessage: string) {
         this.playerMessage = newMessage;
     }
 
