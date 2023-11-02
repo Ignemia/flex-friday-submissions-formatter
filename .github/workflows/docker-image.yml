@@ -10,7 +10,8 @@ jobs:
 
   build:
 
-    runs-on: node:alpine3.17
+rework:
+    runs-on: self-hosted
 
     steps:
     - uses: actions/checkout@v3
