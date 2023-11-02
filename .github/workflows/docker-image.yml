@@ -7,9 +7,10 @@ on:
       - '*/*'
       - '!master'
       - '!deployement'
+      - '!dev'
 
 jobs:
-  rework:
+  Build:
     runs-on: self-hosted
 
     steps:
