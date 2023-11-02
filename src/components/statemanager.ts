@@ -34,6 +34,7 @@ export class StateManager {
                 this.setGameLink($(e.target).val() as string);
             } 
             catch {
+                $(".chscomlinkwarn").addClass(["text-danger", "text-bold"]);
                 $(e.target).addClass("border-danger");
             }
             finally {
