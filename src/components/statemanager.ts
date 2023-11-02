@@ -49,6 +49,7 @@ export class StateManager {
             const out = this.exportData();
             console.log(out);
             $("#output").text(out);
+            navigator.clipboard.writeText(out);
         });
     }
 
