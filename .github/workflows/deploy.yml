@@ -33,7 +33,7 @@ jobs:
       - name: Build Docker image
         run: docker build . --file Dockerfile --tag deploypage:release
       - name: Run Docker Image
-        run: docker run -v ${pwd}/dist:/usr/temp/build/dist -t deploypage:release
+        run: docker run -v $(pwd)/dist:/usr/temp/build/dist -t deploypage:release
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
@@ -41,7 +41,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: './dist/'
+          path: './dist'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v2

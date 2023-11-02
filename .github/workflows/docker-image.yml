@@ -2,12 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches:
-      - '*'
-      - '*/*'
-      - '!master'
-      - '!deployement'
-      - '!dev'
+    branches: ['*', '*/*', '!master', '!deployement', '!dev']
 
 jobs:
   Build:
