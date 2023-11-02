@@ -49,9 +49,9 @@ export class StateManager {
             const out = this.exportData();
             $("#output").text(out);
 
-            var TempText = document.createElement("textarea");
-            TempText.value = out.replace(/\n/gi, "\r\n");
-            navigator.clipboard.writeText(TempText.value);
+            navigator.clipboard.writeText(out.replace(/\n/gi, "\r\n"))
+                .then(_=>$(".copy-status").removeClass("text-danger").addClass("text-success").text("Successfully copied"))
+                .catch(_=>$(".copy-status").removeClass("text-success").addClass("text-danger").text("Copying failed, copy manually"));
         });
     }
 
