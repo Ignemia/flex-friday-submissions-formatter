@@ -47,9 +47,15 @@ export class StateManager {
         });
         $("#submit").on("click", (e)=>{
             const out = this.exportData();
-            console.log(out);
             $("#output").text(out);
-            navigator.clipboard.writeText(out);
+
+            var TempText = document.createElement("input");
+            TempText.value = out;
+            document.body.appendChild(TempText);
+            TempText.select();
+            
+            document.execCommand("copy");
+            document.body.removeChild(TempText);
         });
     }
 
