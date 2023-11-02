@@ -22,8 +22,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
-    runs-on: self-hosted
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}/beta
+    runs-on: ubuntu:latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -31,12 +34,6 @@ jobs:
         run: docker build . --file Dockerfile --tag deploypage:release
       - name: Run Docker Image
         run: docker run -v ${pwd}/dist:/usr/temp/build/dist -t deploypage:release
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}/beta
-    runs-on: ubuntu:latest
-    steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Pages
