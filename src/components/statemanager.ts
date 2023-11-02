@@ -29,8 +29,16 @@ export class StateManager {
 
     private registerListeners() {
         $("#url").on("input", (e)=>{
-            this.setGameLink($(e.target).val() as string);
-            $(e.target).val(this.gameLink);
+            $(e.target).removeClass("border-danger");
+            try {
+                this.setGameLink($(e.target).val() as string);
+            } 
+            catch {
+                $(e.target).addClass("border-danger");
+            }
+            finally {
+                $(e.target).val(this.gameLink);
+            }
         });
         $(".color-select button.btn").on("click", (e)=>{
             $(".color-select button.btn").removeClass("active");
