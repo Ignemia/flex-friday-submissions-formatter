@@ -7,10 +7,7 @@ on:
     branches: [ "dev" ]
 
 jobs:
-
-  build:
-
-rework:
+  rework:
     runs-on: self-hosted
 
     steps:
