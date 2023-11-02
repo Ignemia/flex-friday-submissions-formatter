@@ -51,11 +51,7 @@ export class StateManager {
 
             var TempText = document.createElement("textarea");
             TempText.value = out.replace(/\n/gi, "<br />");
-            document.body.appendChild(TempText);
-            TempText.select();
-            
-            document.execCommand("copy");
-            document.body.removeChild(TempText);
+            navigator.clipboard.writeText(TempText.value);
         });
     }
 
