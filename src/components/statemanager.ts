@@ -49,7 +49,7 @@ export class StateManager {
             const out = this.exportData();
             $("#output").text(out);
 
-            var TempText = document.createElement("input");
+            var TempText = document.createElement("textarea");
             TempText.value = out;
             document.body.appendChild(TempText);
             TempText.select();
