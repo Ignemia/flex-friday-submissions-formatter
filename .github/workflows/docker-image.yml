@@ -10,6 +10,7 @@ jobs:
 
   build:
 
+rework:
     runs-on: self-hosted
 
     steps:
