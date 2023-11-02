@@ -8,6 +8,10 @@ export enum SUBMISSION_TYPE {
     FLEX, FAIL
 }
 
+export enum LINK_TYPES {
+    LIBRARY, GAME
+}
+
 export class StateManager {
     private static __Instance?: StateManager;
 
@@ -22,6 +26,7 @@ export class StateManager {
     playerColor: COLORS = COLORS.WHITE;
     submimssionType: SUBMISSION_TYPE = SUBMISSION_TYPE.FLEX;
     playerMessage: string = "";
+    linkType = LINK_TYPES.GAME;
 
     private constructor() {
         this.registerListeners();
@@ -39,6 +44,11 @@ export class StateManager {
             }
             finally {
                 $(e.target).val(this.gameLink);
+                if (this.linkType == LINK_TYPES.LIBRARY) {
+                    $("#link-to-url-label").text("https://www.chess.com/analysis/library/").trigger("update");
+                } else {
+                    $("#link-to-url-label").text("https://www.chess.com/game/live/").trigger("update");
+                }
             }
         });
         $(".color-select button.btn").on("click", (e)=>{
@@ -65,8 +75,14 @@ export class StateManager {
     }
 
     public setGameLink(newGameLink:string) {
+            this.linkType = LINK_TYPES.GAME;
         if (newGameLink.includes(".com/game/live/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
-        if (newGameLink.includes("analysis")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1, newGameLink.indexOf("?"));
+        if (newGameLink.includes(".com/analysis/game")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1, newGameLink.indexOf("?"));
+        if (newGameLink.includes("chess.com/analysis/library")) {
+            this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
+            this.linkType = LINK_TYPES.LIBRARY;
+            return this.gameLink;
+        } 
         throw new ReferenceError("Invalid link");
     }
 
@@ -125,9 +141,9 @@ export class StateManager {
         out += "\n";
 
         if (this.playerName.ign != "") out += `IGN: **${this.playerName.ign}**\n`;
-        if (this.playerName.twitch != "") out += `Twitch: **${this.playerName.ign}**\n`;
+        if (this.playerName.twitch != "") out += `Twitch: **${this.playerName.twitch}**\n`;
 
-        out += `\n_Link to game: https://www.chess.com/game/live/${this.gameLink}_`;
+        out += `\n_Link to game: ${$("#link-to-url-label").text()}${this.gameLink}_`;
 
         return out;
     }    
