@@ -50,7 +50,7 @@ export class StateManager {
             $("#output").text(out);
 
             var TempText = document.createElement("textarea");
-            TempText.value = out;
+            TempText.value = out.replace(/\n/gi, "\r\n");
             document.body.appendChild(TempText);
             TempText.select();
             

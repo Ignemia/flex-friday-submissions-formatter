@@ -25,7 +25,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}/beta
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: self-hosted
     steps:
       - name: Set proper rights
