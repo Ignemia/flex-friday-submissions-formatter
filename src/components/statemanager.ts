@@ -9,7 +9,7 @@ export enum SUBMISSION_TYPE {
 }
 
 export enum LINK_TYPES {
-    LIBRARY, GAME
+    LIBRARY, PGN, GAME
 }
 
 export class StateManager {
@@ -44,10 +44,16 @@ export class StateManager {
             }
             finally {
                 $(e.target).val(this.gameLink);
-                if (this.linkType == LINK_TYPES.LIBRARY) {
-                    $("#link-to-url-label").text("https://www.chess.com/analysis/library/").trigger("update");
-                } else {
-                    $("#link-to-url-label").text("https://www.chess.com/game/live/").trigger("update");
+                switch (this.linkType) {
+                    case LINK_TYPES.LIBRARY:
+                        $("#link-to-url-label").text("https://www.chess.com/analysis/library/").trigger("update");
+                        break;
+                    case LINK_TYPES.PGN:
+                        $("#link-to-url-label").text("https://www.chess.com/analysis/game/pgn/").trigger("update");
+                        break;
+                    case LINK_TYPES.GAME:
+                        $("#link-to-url-label").text("https://www.chess.com/game/live/").trigger("update");
+                        break;
                 }
             }
         });
@@ -75,14 +81,19 @@ export class StateManager {
     }
 
     public setGameLink(newGameLink:string) {
-            this.linkType = LINK_TYPES.GAME;
+        this.linkType = LINK_TYPES.GAME;
         if (newGameLink.includes(".com/game/live/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
+        if (newGameLink.includes(".com/analysis/game/pgn")) {
+            this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
+            this.linkType = LINK_TYPES.PGN;
+            return this.gameLink;
+        }
         if (newGameLink.includes(".com/analysis/game")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1, newGameLink.indexOf("?"));
-        if (newGameLink.includes("chess.com/analysis/library")) {
+        if (newGameLink.includes("chess.com/analysis/library") ) {
             this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
             this.linkType = LINK_TYPES.LIBRARY;
             return this.gameLink;
-        } 
+        }
         throw new ReferenceError("Invalid link");
     }
 
