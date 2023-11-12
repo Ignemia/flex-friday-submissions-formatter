@@ -9,7 +9,7 @@ export enum SUBMISSION_TYPE {
 }
 
 export enum LINK_TYPES {
-    LIBRARY, PGN, GAME
+    LIBRARY, PGN, GAME, EVENT
 }
 
 export class StateManager {
@@ -54,6 +54,9 @@ export class StateManager {
                     case LINK_TYPES.GAME:
                         $("#link-to-url-label").text("https://www.chess.com/game/live/").trigger("update");
                         break;
+                    case LINK_TYPES.EVENT:
+                        $("#link-to-url-label").text("https://www.chess.com/").trigger("update");
+                        break;
                 }
             }
         });
@@ -83,6 +86,11 @@ export class StateManager {
     public setGameLink(newGameLink:string) {
         this.linkType = LINK_TYPES.GAME;
         if (newGameLink.includes(".com/game/live/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
+        if (newGameLink.match(/\.com\/(.{1,4}\/)?(event)(s)?\//gi)) {
+            this.gameLink = newGameLink.substring(newGameLink.lastIndexOf(".com/")+5);
+            this.linkType = LINK_TYPES.EVENT;
+            return this.gameLink;
+        }
         if (newGameLink.includes(".com/analysis/game/pgn")) {
             this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
             this.linkType = LINK_TYPES.PGN;
