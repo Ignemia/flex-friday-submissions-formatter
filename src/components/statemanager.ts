@@ -85,7 +85,7 @@ export class StateManager {
 
     public setGameLink(newGameLink:string) {
         this.linkType = LINK_TYPES.GAME;
-        if (newGameLink.includes(".com/game/live/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
+        if (newGameLink.includes(".com/game/")) return this.gameLink = newGameLink.substring(newGameLink.lastIndexOf("/")+1);
         if (newGameLink.match(/\.com\/(.{1,4}\/)?(event)(s)?\//gi)) {
             this.gameLink = newGameLink.substring(newGameLink.lastIndexOf(".com/")+5);
             this.linkType = LINK_TYPES.EVENT;
